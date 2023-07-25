@@ -6,7 +6,7 @@ services:
     container_name: mariadb-glpi
     hostname: mariadb
     volumes:
-      - "mariadb-glpi:/var/lib/mysql"
+      - "./mariadb:/var/lib/mysql"
       - "./my.cnf:/etc/mysql/my.cnf:ro"
       - "./logs/mariadb/error.log:/var/log/mysql/error.log:ro"
       - "./logs/mariadb/mysql.log:/var/log/mysql/mysql.log:ro"
@@ -34,6 +34,7 @@ services:
       - "80:80"
     volumes:
       - "./glpi/:/var/www/html/glpi"
+      - "./apache/:/etc/apache2"
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
     depends_on:
@@ -44,9 +45,6 @@ services:
     networks:
       glpi_network:
         ipv4_address: 172.28.0.10
-
-volumes:
-  mariadb-glpi:
 
 networks:
   glpi_network:
