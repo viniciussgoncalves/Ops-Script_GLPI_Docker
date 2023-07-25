@@ -34,7 +34,6 @@ services:
       - "80:80"
     volumes:
       - "./glpi/:/var/www/html/glpi"
-      - "./apache/:/etc/apache2"
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
     depends_on:
