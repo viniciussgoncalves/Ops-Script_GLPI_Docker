@@ -25,17 +25,25 @@ services:
     networks:
       glpi_network:
         ipv4_address: 172.28.0.5
+    deploy:
+      resources:
+        limits:
+          memory: 1024M
+        reservations:
+          memory: 512M
 
   glpi:
     image: diouxx/glpi
     container_name : glpi
     hostname: glpi
     ports:
-      - "80:80"
+      - "28080:80"
     volumes:
       - "./glpi/:/var/www/html/glpi"
+      - "./php:/etc/php/7.4/apache2"
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
+      - "/etc/crontab:/etc/crontab:ro"
     depends_on:
       - mariadb
     environment:
@@ -44,6 +52,12 @@ services:
     networks:
       glpi_network:
         ipv4_address: 172.28.0.10
+    deploy:
+      resources:
+        limits:
+          memory: 1024M
+        reservations:
+          memory: 512M
 
 networks:
   glpi_network:
