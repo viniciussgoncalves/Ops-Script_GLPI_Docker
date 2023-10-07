@@ -43,7 +43,6 @@ services:
       - "./php:/etc/php/7.4/apache2"
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
-      - "/etc/crontab:/etc/crontab:ro"
     depends_on:
       - mariadb
     environment:
